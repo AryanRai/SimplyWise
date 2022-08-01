@@ -9,4 +9,15 @@ def sendstate(stateparam):
     state = stateparam
     eel.switchpage(stateparam)
 
-eel.start('main.html')
+@eel.expose
+def checklogin(usernameparam, passwordparam):
+    print("login creds are username: " + usernameparam + " password: " + passwordparam)
+    global username
+    global password
+    username = usernameparam
+    password = passwordparam
+    eel.switchpage("mainpage")
+
+
+
+eel.start('login.html')

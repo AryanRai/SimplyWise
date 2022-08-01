@@ -1,0 +1,280 @@
+<style type="text/css">
+  
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+:root {
+  --space-root: 1rem;
+  --space-xs: calc(var(--space-root) / 2);
+  --space-s: calc(var(--space-root) / 1.5);
+  --space-m: var(--space-root);
+  --space-l: calc(var(--space-root) * 1.5);
+  --space-xl: calc(var(--space-root) * 2);
+  --color-primary: mediumslateblue;
+  --color-secondary: black;
+  --color-tertiary: hotpink;
+  --base-border-radius: 0.25rem;
+  --ease: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --duration: 350ms;
+  --font-family: "Roboto", sans-serif;
+  --font-size: 1.25rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  height: 100vh;
+  padding: var(--space-m);
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  line-height: 1.2;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg clip-path='url(%26quot%3b%23SvgjsClipPath6205%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%2332325d'%3e%3c/rect%3e%3ccircle r='42.535' cx='1133.28' cy='438.33' fill='url(%23SvgjsLinearGradient6206)'%3e%3c/circle%3e%3ccircle r='20.76' cx='939.8' cy='110.75' fill='url(%23SvgjsLinearGradient6207)'%3e%3c/circle%3e%3ccircle r='19.955' cx='10.36' cy='496.71' fill='url(%23SvgjsLinearGradient6208)'%3e%3c/circle%3e%3ccircle r='29.495' cx='549.2' cy='297.16' fill='%2343468b'%3e%3c/circle%3e%3ccircle r='36.335' cx='634.28' cy='83.73' fill='url(%23SvgjsLinearGradient6209)'%3e%3c/circle%3e%3ccircle r='46.35' cx='1192.25' cy='413.16' fill='url(%23SvgjsLinearGradient6210)'%3e%3c/circle%3e%3ccircle r='28.785' cx='135.18' cy='307.02' fill='%2343468b'%3e%3c/circle%3e%3ccircle r='28.16' cx='935.49' cy='502.93' fill='url(%23SvgjsLinearGradient6211)'%3e%3c/circle%3e%3c/g%3e%3cdefs%3e%3cclipPath id='SvgjsClipPath6205'%3e%3crect width='1440' height='560' x='0' y='0'%3e%3c/rect%3e%3c/clipPath%3e%3clinearGradient x1='1048.21' y1='438.33' x2='1218.35' y2='438.33' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient6206'%3e%3cstop stop-color='rgba(29%2c 161%2c 174%2c 1)' offset='0.1'%3e%3c/stop%3e%3cstop stop-color='rgba(178%2c 44%2c 210%2c 1)' offset='0.9'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='898.28' y1='152.26999999999998' x2='981.3199999999999' y2='69.22999999999999' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient6207'%3e%3cstop stop-color='rgba(171%2c 60%2c 156%2c 1)' offset='0.1'%3e%3c/stop%3e%3cstop stop-color='rgba(91%2c 73%2c 177%2c 1)' offset='0.9'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='-29.549999999999997' y1='496.7099999999999' x2='50.269999999999996' y2='496.7099999999999' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient6208'%3e%3cstop stop-color='rgba(29%2c 161%2c 174%2c 1)' offset='0.1'%3e%3c/stop%3e%3cstop stop-color='rgba(178%2c 44%2c 210%2c 1)' offset='0.9'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='561.61' y1='156.4' x2='706.95' y2='11.060000000000002' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient6209'%3e%3cstop stop-color='rgba(171%2c 60%2c 156%2c 1)' offset='0.1'%3e%3c/stop%3e%3cstop stop-color='rgba(91%2c 73%2c 177%2c 1)' offset='0.9'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='1099.55' y1='413.16' x2='1284.95' y2='413.16' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient6210'%3e%3cstop stop-color='rgba(29%2c 161%2c 174%2c 1)' offset='0.1'%3e%3c/stop%3e%3cstop stop-color='rgba(178%2c 44%2c 210%2c 1)' offset='0.9'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='879.17' y1='559.25' x2='991.81' y2='446.61' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient6211'%3e%3cstop stop-color='%23e298de' offset='0.1'%3e%3c/stop%3e%3cstop stop-color='rgba(28%2c 23%2c 192%2c 1)' offset='0.9'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+}
+
+a {
+  color: var(--color-primary);
+}
+a:focus {
+  color: var(--color-secondary);
+}
+
+h2 {
+  font-weight: 700;
+  font-size: calc(var(--font-size) * 1.5);
+}
+
+.form {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  transform: skewY(-5deg) translateY(10%) scale(0.94);
+  transition: box-shadow var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+.form:before, .form:after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  background-color: #ebebeb;
+  width: 25%;
+  height: 100%;
+  transition: background-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+.form:before {
+  top: 0;
+  right: calc(100% - 1px);
+  transform-origin: 100% 100%;
+  transform: skewY(-35deg) scaleX(-1);
+  z-index: -1;
+}
+.form:after {
+  top: 0;
+  left: calc(100% - 1px);
+  transform-origin: 0 0;
+  transform: skewY(-35deg) scaleX(-1);
+  z-index: 2;
+}
+.form:hover, .form:focus-within {
+  transform: scale(1.0001);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+}
+.form:hover:before, .form:hover:after, .form:focus-within:before, .form:focus-within:after {
+  background-color: white;
+  transform: skewY(0);
+}
+
+.form-inner {
+  padding: var(--space-xl);
+  background-color: white;
+  z-index: 1;
+}
+.form-inner > * + * {
+  margin-top: var(--space-xl);
+}
+
+.input-wrapper:focus-within label {
+  color: var(--color-secondary);
+}
+.input-wrapper:focus-within .icon {
+  background-color: var(--color-secondary);
+}
+.input-wrapper:focus-within input {
+  border-color: var(--color-secondary);
+}
+.input-wrapper + .input-wrapper {
+  margin-top: var(--space-l);
+}
+
+.input-group {
+  position: relative;
+}
+.input-group input {
+  border-radius: var(--base-border-radius);
+  padding-left: calc(var(--space-s) + 60px);
+}
+.input-group .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-top-left-radius: var(--base-border-radius);
+  border-bottom-left-radius: var(--base-border-radius);
+  pointer-events: none;
+}
+
+label {
+  font-size: calc(var(--font-size) / 1.65);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.065rem;
+  display: block;
+  margin-bottom: var(--space-xs);
+  color: var(--color-primary);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  flex: 0 1 auto;
+  padding: var(--space-m);
+  background-color: var(--color-primary);
+}
+.icon svg {
+  width: 1.25em;
+  height: 1.25em;
+  fill: white;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: transform var(--duration) var(--ease);
+}
+
+input {
+  flex: 1 1 0;
+  width: 100%;
+  outline: none;
+  padding: var(--space-m);
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-primary);
+}
+input:focus {
+  color: var(--color-primary);
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn-group > * + * {
+  margin-left: var(--space-s);
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  outline: none;
+  padding: var(--space-m) var(--space-l);
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: var(--base-border-radius);
+}
+
+.btn--primary {
+  font-size: calc(var(--font-size) / 1.65);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.065rem;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+.btn--primary:focus {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.btn--text {
+  font-size: calc(var(--font-size) / 1.5);
+  padding: 0;
+}
+
+</style>
+
+
+<style type="text/css">
+  
+
+
+</style>
+
+<head>
+<script type="text/javascript" src="/eel.js"></script>
+
+<script type="text/javascript">
+  eel.sendstate("loginpage");
+
+  function onbuttonpresslogin(){
+    console.log("button pressed");
+    console.log("");
+    eel.checklogin(document.getElementById("login-username").value, document.getElementById("login-password").value);
+
+  }
+
+
+  ////// page change functions
+
+  eel.expose(switchpage);
+  function switchpage(page) {
+    console.log(page);
+    if (page == "mainpage") {
+      console.log("switching to " + page);
+      window.location.replace("./main.html");
+    }
+    if (page == "forgotpasswordpage") {
+      console.log("switching to " + page);
+    }
+
+  }
+
+
+</script>
+  
+</head>
+
+<div class="form">
+  <div class="form-inner">
+    <h2>User Login</h2>
+    <div class="input-wrapper">
+      <label for="login-username">Username</label>
+      <div class="input-group"><span class="icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"></path>
+          </svg></span>
+        <input id="login-username" type="text" data-lpignore="true"/>
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <label for="login-password">Password</label>
+      <div class="input-group"><span class="icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M11.83,1.73C8.43,1.79 6.23,3.32 6.23,3.32C5.95,3.5 5.88,3.91 6.07,4.19C6.27,4.5 6.66,4.55 6.96,4.34C6.96,4.34 11.27,1.15 17.46,4.38C17.75,4.55 18.14,4.45 18.31,4.15C18.5,3.85 18.37,3.47 18.03,3.28C16.36,2.4 14.78,1.96 13.36,1.8C12.83,1.74 12.32,1.72 11.83,1.73M12.22,4.34C6.26,4.26 3.41,9.05 3.41,9.05C3.22,9.34 3.3,9.72 3.58,9.91C3.87,10.1 4.26,10 4.5,9.68C4.5,9.68 6.92,5.5 12.2,5.59C17.5,5.66 19.82,9.65 19.82,9.65C20,9.94 20.38,10.04 20.68,9.87C21,9.69 21.07,9.31 20.9,9C20.9,9 18.15,4.42 12.22,4.34M11.5,6.82C9.82,6.94 8.21,7.55 7,8.56C4.62,10.53 3.1,14.14 4.77,19C4.88,19.33 5.24,19.5 5.57,19.39C5.89,19.28 6.07,18.92 5.95,18.6V18.6C4.41,14.13 5.78,11.2 7.8,9.5C9.77,7.89 13.25,7.5 15.84,9.1C17.11,9.9 18.1,11.28 18.6,12.64C19.11,14 19.08,15.32 18.67,15.94C18.25,16.59 17.4,16.83 16.65,16.64C15.9,16.45 15.29,15.91 15.26,14.77C15.23,13.06 13.89,12 12.5,11.84C11.16,11.68 9.61,12.4 9.21,14C8.45,16.92 10.36,21.07 14.78,22.45C15.11,22.55 15.46,22.37 15.57,22.04C15.67,21.71 15.5,21.35 15.15,21.25C11.32,20.06 9.87,16.43 10.42,14.29C10.66,13.33 11.5,13 12.38,13.08C13.25,13.18 14,13.7 14,14.79C14.05,16.43 15.12,17.54 16.34,17.85C17.56,18.16 18.97,17.77 19.72,16.62C20.5,15.45 20.37,13.8 19.78,12.21C19.18,10.61 18.07,9.03 16.5,8.04C14.96,7.08 13.19,6.7 11.5,6.82M11.86,9.25V9.26C10.08,9.32 8.3,10.24 7.28,12.18C5.96,14.67 6.56,17.21 7.44,19.04C8.33,20.88 9.54,22.1 9.54,22.1C9.78,22.35 10.17,22.35 10.42,22.11C10.67,21.87 10.67,21.5 10.43,21.23C10.43,21.23 9.36,20.13 8.57,18.5C7.78,16.87 7.3,14.81 8.38,12.77C9.5,10.67 11.5,10.16 13.26,10.67C15.04,11.19 16.53,12.74 16.5,15.03C16.46,15.38 16.71,15.68 17.06,15.7C17.4,15.73 17.7,15.47 17.73,15.06C17.79,12.2 15.87,10.13 13.61,9.47C13.04,9.31 12.45,9.23 11.86,9.25M12.08,14.25C11.73,14.26 11.46,14.55 11.47,14.89C11.47,14.89 11.5,16.37 12.31,17.8C13.15,19.23 14.93,20.59 18.03,20.3C18.37,20.28 18.64,20 18.62,19.64C18.6,19.29 18.3,19.03 17.91,19.06C15.19,19.31 14.04,18.28 13.39,17.17C12.74,16.07 12.72,14.88 12.72,14.88C12.72,14.53 12.44,14.25 12.08,14.25Z"></path>
+          </svg></span>
+        <input id="login-password" type="password" data-lpignore="true"/>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn--primary" onclick="onbuttonpresslogin()">Sign in</button><a class="btn--text" href="#0">Forgot password?</a>
+    </div>
+  </div>
+</div>
