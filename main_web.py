@@ -16,8 +16,13 @@ def checklogin(usernameparam, passwordparam):
     global password
     username = usernameparam
     password = passwordparam
-    eel.switchpage("mainpage")
+    if (username == "admin" and password == "root"):
+        #admin
+        eel.switchpage("mainpage")
 
+    else:
+        #not admin
+        eel.switchpage("loginfailed")
 
 
 eel.start('login.html')
