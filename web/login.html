@@ -251,10 +251,12 @@ input:focus {
 
 
 </script>
+
+
   
 </head>
 
-<div class="form">
+<div class="form" id="form">
   <div class="form-inner">
     <h2>User Login</h2>
     <div class="input-wrapper">
@@ -276,7 +278,22 @@ input:focus {
       </div>
     </div>
     <div class="btn-group">
-      <button class="btn btn--primary" onclick="onbuttonpresslogin()">Sign in</button><a class="btn--text" href="#0">Forgot password?</a>
+      <button class="btn btn--primary" id="loginbutton" onclick="onbuttonpresslogin()">Sign in</button><a class="btn--text" href="#0">Forgot password?</a>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+var input = document.getElementById("form");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("loginbutton").click();
+  }
+});
+</script>
