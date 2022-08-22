@@ -5,14 +5,32 @@ mycursor = mydb.cursor()
 eel.init('web')
 state = ""
 
+def insert_into_table(tablename, values):
+    mycursor.execute(("insert into {} values({})").format(tablename))
+
+@eel.expose
+def getall(tablename):
+    mycursor.execute(("select * from {}").format(tablename))
+    returnlist = []
+    for row in mycursor:
+        print(row)
+        returnlist.append(row)
+    eel.sqlreturn(returnlist)
+
+@eel.expose
+def getspecific(tablename, condition):
+    mycursor.execute(("select * from {} where {}").format(tablename, condition))
+
+@eel.expose
 def create_database(dbname):
     mycursor.execute(("create database if not exists {}").format(dbname))
     mycursor.execute(("use {}").format(dbname))
-    print("db createed and now in use")
+    print(("db created {} and now in use").format(dbname))
 
+@eel.expose
 def create_table(tablename, dataformat):
     mycursor.execute(("create table if not exists {} ({})").format(tablename, dataformat))
-    print("db createed and now in use")
+    print(("table {} created").format(tablename))
 
 @eel.expose
 def sendstate(stateparam):
@@ -25,9 +43,13 @@ def sendstate(stateparam):
 def statechangereact(stateparam):
     if (stateparam == "loginpage"):
         create_database("CsProj")
-        #create_table("users", "userid INT AUTO_INCREMENT PRIMARY KEY, fname VARCHAR(255), lname VARCHAR(255), accesslevel int(1)")
+        create_table("users", "username VARCHAR(50) PRIMARY KEY NOT NULL, password VARCHAR(50) NOT NULL, accesslevel INT(1), fname VARCHAR(50), lname VARCHAR(50), DOB date, phonenumber INT(10), email VARCHAR(100)")
         
-
+    if (stateparam == "loginpage"):
+        create_database("CsProj")
+        create_table("users", "username VARCHAR(50) PRIMARY KEY NOT NULL, password VARCHAR(50) NOT NULL, accesslevel INT(1), fname VARCHAR(50), lname VARCHAR(50), DOB date, phonenumber INT(10), email VARCHAR(100)")
+ 
+    
 
 @eel.expose
 def checklogin(usernameparam, passwordparam):

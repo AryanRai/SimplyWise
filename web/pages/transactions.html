@@ -22,7 +22,9 @@ a:hover {
  cursor: pointer;
 }
 
+#button1{
 
+}
 
 
 </style>
@@ -49,25 +51,25 @@ a:hover {
     console.log(page);
     console.log("switching to " + page);
     if (page == "transactions") {
-    	window.location.replace("./pages/transactions.html");
+    	window.location.replace("./transactions.html");
     }
     if (page == "history") {
-    	window.location.replace("./pages/history.html");
+    	window.location.replace("./history.html");
     }
     if (page == "inventory") {
-    	window.location.replace("./pages/inventory.html");
+    	window.location.replace("./inventory.html");
     }
     if (page == "borrows") {
-    	window.location.replace("./pages/borrows.html");
+    	window.location.replace("./borrows.html");
     }
     if (page == "profit") {
-    	window.location.replace("./pages/profit.html");
+    	window.location.replace("./profit.html");
     }
     if (page == "tasks") {
-    	window.location.replace("./pages/tasks.html");
+    	window.location.replace("./tasks.html");
     }
     if (page == "settings") {
-    	window.location.replace("./pages/settings.html");
+    	window.location.replace("./settings.html");
     }
   }
 
@@ -167,54 +169,13 @@ a:hover {
 
             <div class="px-4 py-4">
               <div class="mb-2  ">
-                <p class="font-semibold">7 Day Weather</p>
+                <p class="font-semibold">Current Transaction</p>
                 </div>
-              <div class="space-y-2">
-                <div class="flex justify-between items-center space-x-2">
-                  <p>Fri</p><p class="text-yellow-400">18 &deg</p>
-                  <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <line x1="8" y1="19" x2="8" y2="21" />  <line x1="8" y1="13" x2="8" y2="15" />  <line x1="16" y1="19" x2="16" y2="21" />  <line x1="16" y1="13" x2="16" y2="15" />  <line x1="12" y1="21" x2="12" y2="23" />  <line x1="12" y1="15" x2="12" y2="17" />  <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25" /></svg>
-                  <p>Rain</p>
-                <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" /></svg><p>12km/h</p>
+                  <div class="flex justify-between items-center space-x-5" id="currenttransactionstext">
+                  <p>06:30</p><p>Today</p>
+                  
+                  <svg class="h-4 w-4 text-white mr-5"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="4" y="4" width="16" height="16" rx="2" />  <path d="M9 12l2 2l4 -4" /></svg>
                 </div>
-                 <div class="flex justify-between items-center space-x-2">
-                  <p>Sat</p><p class="text-yellow-400">21 &deg</p>
-                  <svg class="h-4 w-4 text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="3" />  <line x1="12" y1="5" x2="12" y2="3" />  <line x1="17" y1="7" x2="18.4" y2="5.6" />  <line x1="19" y1="12" x2="21" y2="12" />  <line x1="17" y1="17" x2="18.4" y2="18.4" />  <line x1="12" y1="19" x2="12" y2="21" />  <line x1="7" y1="17" x2="5.6" y2="18.4" />  <line x1="6" y1="12" x2="4" y2="12" />  <line x1="7" y1="7" x2="5.6" y2="5.6" /></svg>
-                  <p>Sunny</p>
-                <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" /></svg><p>5km/h</p>
-                </div>
-                <div class="flex justify-between items-center space-x-2">
-                  <p>Sun</p><p class="text-yellow-400">14 &deg</p>
-                  <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9" />  <polyline points="13 11 9 17 15 17 11 23" /></svg>
-                  <p>Rain</p>
-                <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" /></svg><p>21km/h</p>
-                </div>
-                <div class="flex justify-between items-center space-x-2">
-                  <p>Mon</p><p class="text-yellow-400">20 &deg</p>
-                  <svg class="h-4 w-4 text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="3" />  <line x1="12" y1="5" x2="12" y2="3" />  <line x1="17" y1="7" x2="18.4" y2="5.6" />  <line x1="19" y1="12" x2="21" y2="12" />  <line x1="17" y1="17" x2="18.4" y2="18.4" />  <line x1="12" y1="19" x2="12" y2="21" />  <line x1="7" y1="17" x2="5.6" y2="18.4" />  <line x1="6" y1="12" x2="4" y2="12" />  <line x1="7" y1="7" x2="5.6" y2="5.6" /></svg>
-                  <p>Sunny</p>
-                <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" /></svg><p>5km/h</p>
-                </div>
-                <div class="flex justify-between items-center space-x-2">
-                  <p>Tue</p><p class="text-yellow-400">25 &deg</p>
-                  <svg class="h-4 w-4 text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="3" />  <line x1="12" y1="5" x2="12" y2="3" />  <line x1="17" y1="7" x2="18.4" y2="5.6" />  <line x1="19" y1="12" x2="21" y2="12" />  <line x1="17" y1="17" x2="18.4" y2="18.4" />  <line x1="12" y1="19" x2="12" y2="21" />  <line x1="7" y1="17" x2="5.6" y2="18.4" />  <line x1="6" y1="12" x2="4" y2="12" />  <line x1="7" y1="7" x2="5.6" y2="5.6" /></svg>
-                  <p>Sunny</p>
-                <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" /></svg><p>15km/h</p>
-                </div>
-                <div class="flex justify-between items-center space-x-2">
-                  <p>Wed</p><p class="text-yellow-400">24 &deg</p>
-                  <svg class="h-4 w-4 text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="3" />  <line x1="12" y1="5" x2="12" y2="3" />  <line x1="17" y1="7" x2="18.4" y2="5.6" />  <line x1="19" y1="12" x2="21" y2="12" />  <line x1="17" y1="17" x2="18.4" y2="18.4" />  <line x1="12" y1="19" x2="12" y2="21" />  <line x1="7" y1="17" x2="5.6" y2="18.4" />  <line x1="6" y1="12" x2="4" y2="12" />  <line x1="7" y1="7" x2="5.6" y2="5.6" /></svg>
-                  <p>Sunny</p>
-                <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" /></svg><p>12km/h</p>
-                </div>
-                
-                <div class="flex justify-between items-center space-x-2">
-                  <p>Thur</p><p class="text-yellow-400">17 &deg</p>
-                  <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25" />  <line x1="8" y1="16" x2="8.01" y2="16" />  <line x1="8" y1="20" x2="8.01" y2="20" />  <line x1="12" y1="18" x2="12.01" y2="18" />  <line x1="12" y1="22" x2="12.01" y2="22" />  <line x1="16" y1="16" x2="16.01" y2="16" />  <line x1="16" y1="20" x2="16.01" y2="20" /></svg>
-                  <p>Rain</p>
-                <svg class="h-4 w-4 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" /></svg><p>20km/h</p>
-                </div>
-                
-              </div>
 
             </div>
 
@@ -327,3 +288,30 @@ a:hover {
 </body>
 </html>
 
+<script type="text/javascript">
+  
+///////
+
+//SQL CONNECTIVITY
+eel.getall("test");
+
+var sqlretunval = '';
+var currenttransactionsresponse = '';
+eel.expose(sqlreturn);
+  function sqlreturn(data) {
+    //console.log(data);
+
+    window.sqlretunval = data;
+    window.currenttransactionsresponse = sqlretunval;
+    console.log(sqlretunval);
+    for (var i = sqlretunval.length - 1; i >= 0; i--) {
+      console.log(sqlretunval[i]);
+      currenttrasnactionspara = document.getElementById('currenttransactionstext');
+      currenttrasnactionspara.appendChild(document.createTextNode(sqlretunval[i]));
+
+    }
+  }
+
+
+
+</script>
