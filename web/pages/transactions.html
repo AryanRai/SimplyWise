@@ -306,8 +306,11 @@ eel.expose(sqlreturn);
     console.log(sqlretunval);
     for (var i = sqlretunval.length - 1; i >= 0; i--) {
       console.log(sqlretunval[i]);
-      currenttrasnactionspara = document.getElementById('currenttransactionstext');
-      currenttrasnactionspara.appendChild(document.createTextNode(sqlretunval[i]));
+      
+      document.getElementById('currenttransactionstext').createElement("p").appendChild(document.createTextNode(sqlretunval[i]));
+      
+      
+      
 
     }
   }
