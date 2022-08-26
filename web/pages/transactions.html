@@ -172,16 +172,13 @@ a:hover {
                 <p class="font-semibold">Current Transaction</p>
                 </div>
                   <div class="flex justify-between items-center space-x-5" id="currenttransactionstext">
-                  <p>06:30</p><p>Today</p>
                   
+                  <!-- 
                   <svg class="h-4 w-4 text-white mr-5"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="4" y="4" width="16" height="16" rx="2" />  <path d="M9 12l2 2l4 -4" /></svg>
+                  -->
                 </div>
                   <!--    new div     -->
-                <div class="flex justify-between items-center space-x-5" id="currenttransactionstext">
-                  <p>06:30</p><p>Today</p>
-                  
-                  <svg class="h-4 w-4 text-white mr-5"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="4" y="4" width="16" height="16" rx="2" />  <path d="M9 12l2 2l4 -4" /></svg>
-                </div>
+ 
 
 
             </div>
@@ -305,6 +302,10 @@ eel.getall("test");
 var sqlretunval = '';
 var currenttransactionsresponse = '';
 var currenttrasnactionspara = document.getElementById("currenttransactionstext");
+var currenttrasnactionsdiv = document.getElementById("currenttrasnactionsdiv");
+
+var clonelist = [];
+//var clone = currenttrasnactionsdiv.cloneNode(true);
 
 eel.expose(sqlreturn);
   function sqlreturn(data) {
@@ -314,10 +315,12 @@ eel.expose(sqlreturn);
     window.currenttransactionsresponse = sqlretunval;
     console.log(sqlretunval);
     for (var i = sqlretunval.length - 1; i >= 0; i--) {
+    
+
+      var cln = currenttrasnactionspara.cloneNode(true);
       console.log(sqlretunval[i]);
-      
-      
-      currenttrasnactionspara.innerHTML += "<p>" + sqlretunval[i] + "</p>";
+      cln.innerHTML += "<p>" + sqlretunval[i] + "</p>";
+      clonelist.push(document.getElementById("currenttrasnactionsdiv").appendChild(cln));
       
       
 
