@@ -121,8 +121,8 @@
 		<div class="order">
 			<div class="head">
 				<h3>Recent Orders</h3>
+				<i class='bx bx-plus' ></i>
 				<i class='bx bx-search' ></i>
-				<i class='bx bx-filter' ></i>
 			</div>
 			<table>
 				<thead>
@@ -133,14 +133,14 @@
 						<th>Price</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="transactionstable">
 					<tr>
 						<td>
 							<img src="img/people.png">
 							<p>John Doe</p>
 						</td>
 						<td>01-10-2021</td>
-						<td><span class="status completed">Completed</span></td>
+						<td><span class="status completed" onclick="changestatus(ID)">Completed</span></td>
 						<td>12</td>
 					</tr>
 					<tr>
@@ -261,9 +261,9 @@
 		}
 
 
-		eel.create_table("dashboard", "field varchar(40) PRIMARY KEY, value int(10)")
+		eel.create_table("transactions", "ID int(8) NOT NULL IDENTITY PRIMARY KEY, Customer varchar(40), Date date, Status varchar(40), Price int(40)");
 		//SQL CONNECTIVITY
-		eel.getall("dashboard");
+		eel.getall("transactions");
 
 		eel.expose(sqlreturn);
 		  function sqlreturn(data) {
@@ -272,9 +272,9 @@
 			window.currenttransactionsresponse = sqlretunval;
 			console.log(sqlretunval);
 			if (sqlretunval == "" || sqlretunval == null) {
-				eel.insert_into_table("dashboard", '"Sales", NULL');
-				eel.insert_into_table("dashboard", '"Profits", NULL');
-				eel.insert_into_table("dashboard", '"Purchases", NULL');
+				//eel.insert_into_table("dashboard", '"Sales", NULL');
+				//eel.insert_into_table("dashboard", '"Profits", NULL');
+				//eel.insert_into_table("dashboard", '"Purchases", NULL');
 				console.log("null");
 				window.location.reload();
 			}
@@ -284,9 +284,9 @@
 			console.log(dictionary);
 			console.log(sqlretunval);		
 			Object.assign(copy, dictionary);
-			delete copy["Sales"];
-			delete copy["Purchases"];
-			delete copy["Profits"];
+			//delete copy["Sales"];
+			//delete copy["Purchases"];
+			//delete copy["Profits"];
 			var extracards = Object.keys(copy).length;
 			var extracardskey = Object.keys(copy);
 			if (extracards != 0) {
@@ -297,7 +297,7 @@
 					var extracardname = extracardskey[i];
 					var extracardvalue = copy[extracardname];
 					console.log(extracardname, extracardvalue);
-					document.getElementById('cardlist').innerHTML += '<li onclick="updatecard(' + "'" + extracardname + "', prompt('Enter new value'))" + '"' + "><i class='bx bxs-dollar-circle' ></i><span class='text'><h3 id=" + '"' + extracardname + '"' +'>' + extracardvalue + '</h3><p>' + extracardname + '</p></span></li>' ;
+					document.getElementById('transactionstable').innerHTML += '<tr><td><img src="img/people.png"><p>John Doe</p></td><td>01-10-2021</td><td><span class="status completed" onclick="changestatus(ID)">Completed</span></td><td>12</td></tr>' ;
 
 				}
 
