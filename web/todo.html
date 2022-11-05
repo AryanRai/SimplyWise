@@ -10,16 +10,16 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="mainstyle.css">
 
-	<title>AdminHub</title>
+	<title>OuOu</title>
 </head>
-<body>
+<body class="dark">
 
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-smile'></i>
-			<span class="text">AdminHub</span>
+			<span class="text">OuOu</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -84,7 +84,7 @@
 					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>
-			<input type="checkbox" id="switch-mode" hidden>
+			<input type="checkbox" id="switch-mode" checked hidden>
 			<label for="switch-mode" class="switch-mode"></label>
 			<a href="#" class="notification">
 				<i class='bx bxs-bell' ></i>
@@ -96,57 +96,67 @@
 		</nav>
 		<!-- NAVBAR -->
 
-		<!-- MAIN -->
-		<main>
-			<div class="head-title">
-				<div class="left">
-					<h1>Dashboard</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Home</a>
-						</li>
-					</ul>
-				</div>
-				<a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a>
-			</div>
-
-			<ul class="box-info">
+<!-- MAIN -->
+<main>
+	<div class="head-title">
+		<div class="left">
+			<h1>Dashboard</h1>
+			<ul class="breadcrumb">
 				<li>
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">
-						<h3>1020</h3>
-						<p>Profits</p>
-					</span>
+					<a href="#">Dashboard</a>
 				</li>
+				<li><i class='bx bx-chevron-right' ></i></li>
 				<li>
-					<i class='bx bxs-group' ></i>
-					<span class="text">
-						<h3>2834</h3>
-						<p>Customers</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-dollar-circle' ></i>
-					<span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
-					</span>
+					<a class="active" href="#">Home</a>
 				</li>
 			</ul>
+		</div>
+		<a href="#" class="btn-download">
+			<i class='bx bxs-cloud-download' ></i>
+			<span class="text">Download PDF</span>
+		</a>
+	</div>
 
 
 
-		</main>
-		<!-- MAIN -->
+
+	<div class="table-data">
+
+		<div class="todo">
+			<div class="head">
+				<h3>Todos</h3>
+				<i class='bx bx-plus' ></i>
+				<i class='bx bx-filter' ></i>
+			</div>
+			<ul class="todo-list">
+				<li class="completed">
+					<p>Todo List</p>
+					<i class='bx bx-dots-vertical-rounded' ></i>
+				</li>
+				<li class="completed">
+					<p>Todo List</p>
+					<i class='bx bx-dots-vertical-rounded' ></i>
+				</li>
+				<li class="not-completed">
+					<p>Todo List</p>
+					<i class='bx bx-dots-vertical-rounded' ></i>
+				</li>
+				<li class="completed">
+					<p>Todo List</p>
+					<i class='bx bx-dots-vertical-rounded' ></i>
+				</li>
+				<li class="not-completed">
+					<p>Todo List</p>
+					<i class='bx bx-dots-vertical-rounded' ></i>
+				</li>
+			</ul>
+		</div>
+	</div>
+</main>
+<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
+	
 	
 
 	<script src="mainscript.js"></script>
@@ -194,40 +204,81 @@
 	  <script type="text/javascript">
   
 		///////
-		
+		var sqlretunval = "";
+		var currenttransactionsresponse = "";
+
+
+		function newcard(){
+			//eel.insert_into_table("dashboard", "'Sales', NULL");
+			let cardname = prompt("Enter new card name");
+			let iconurl = prompt("Enter card icon url");
+			let value = parseInt(prompt("Enter value"));
+			if (cardname != "" || cardname != null ||value != "" || value != null || typeof (value) == "number") {
+			
+				eel.insert_into_table("dashboard", '"' + cardname + '", ' + value);
+				window.location.reload();
+				
+			}
+		}
+
+		function updatecard (cardname, value){
+			console.log(cardname);
+            console.log(value);
+			eel.update_specific("dashboard", value, "field = " + '"' + cardname +  '"');
+			window.location.reload();
+		}
+
+
+		eel.create_table("dashboard", "field varchar(40) PRIMARY KEY, value int(10)")
 		//SQL CONNECTIVITY
-		//eel.getall("test");
-		
-		var sqlretunval = '';
-		var currenttransactionsresponse = '';
-		var currenttrasnactionspara = document.getElementById("currenttransactionstext");
-		var currenttrasnactionsdiv = document.getElementById("currenttrasnactionsdiv");
-		
-		var clonelist = [];
-		//var clone = currenttrasnactionsdiv.cloneNode(true);
-		
+		eel.getall("dashboard");
+
 		eel.expose(sqlreturn);
 		  function sqlreturn(data) {
-			//console.log(data);
-		
+
 			window.sqlretunval = data;
 			window.currenttransactionsresponse = sqlretunval;
 			console.log(sqlretunval);
-			for (var i = sqlretunval.length - 1; i >= 0; i--) {
-			
-		
-			  var cln = currenttrasnactionspara.cloneNode(true);
-			  console.log(sqlretunval[i]);
-			  cln.innerHTML += "<p>" + sqlretunval[i] + "</p>";
-			  clonelist.push(document.getElementById("currenttrasnactionsdiv").appendChild(cln));
-			  
-			  
-		
+			if (sqlretunval == "" || sqlretunval == null) {
+				eel.insert_into_table("dashboard", '"Sales", NULL');
+				eel.insert_into_table("dashboard", '"Profits", NULL');
+				eel.insert_into_table("dashboard", '"Purchases", NULL');
+				console.log("null");
+				window.location.reload();
 			}
+			//document.getElementById("sqlbutton").click();
+			let dictionary = Object.assign({}, ...sqlretunval.map((x) => ({[x[0]]: x[1]})));
+			var copy={};
+			console.log(dictionary);
+			console.log(sqlretunval);		
+			Object.assign(copy, dictionary);
+			delete copy["Sales"];
+			delete copy["Purchases"];
+			delete copy["Profits"];
+			var extracards = Object.keys(copy).length;
+			var extracardskey = Object.keys(copy);
+			if (extracards != 0) {
+				console.log("more fields", extracardskey, extracards);
+				for (var i = 0; i < extracards; i++) {
+					console.log("h");
+                    console.log(i);
+					var extracardname = extracardskey[i];
+					var extracardvalue = copy[extracardname];
+					console.log(extracardname, extracardvalue);
+					document.getElementById('cardlist').innerHTML += '<li onclick="updatecard(' + "'" + extracardname + "', prompt('Enter new value'))" + '"' + "><i class='bx bxs-dollar-circle' ></i><span class='text'><h3 id=" + '"' + extracardname + '"' +'>' + extracardvalue + '</h3><p>' + extracardname + '</p></span></li>' ;
+
+				}
+
+			}
+			document.getElementById('cardlist').innerHTML += '<li onclick="newcard()"><i class="bx bxs-plus-circle" ></i><span class="text"><h3 id="h">New</h3><p></p></span></li>' ;
+			document.getElementById("sales").innerHTML = dictionary["Sales"];
+			document.getElementById("purchases").innerHTML = dictionary["Purchases"];
+			document.getElementById("profits").innerHTML = dictionary["Profits"];
+			
 		  }
-		
-		
-		
+		  
+
+		//update tablename set column = newval where name = 
 		</script>
 </body>
 </html>
