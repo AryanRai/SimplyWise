@@ -5,8 +5,24 @@ mycursor = mydb.cursor()
 eel.init('web')
 state = ""
 
+@eel.expose
+def update_specific(tablename, value, condition):
+    print(("update {} set value = {} where {}").format(tablename, value, condition))
+    mycursor.execute(("update {} set value = {} where {}").format(tablename, value, condition))
+    mydb.commit()
+
+
+@eel.expose
+def delete_specific(tablename, condition):
+    print(("delete from {} where {}").format(tablename, condition))
+    mycursor.execute(("delete from {} where {}").format(tablename, condition))
+    mydb.commit()
+
+@eel.expose
 def insert_into_table(tablename, values):
-    mycursor.execute(("insert into {} values({})").format(tablename))
+    print(("insert into {} values({})").format(tablename, values))
+    mycursor.execute(("insert into {} values({})").format(tablename, values))
+    mydb.commit()
 
 @eel.expose
 def getall(tablename):
@@ -16,6 +32,7 @@ def getall(tablename):
         print(row)
         returnlist.append(row)
     eel.sqlreturn(returnlist)
+    
 
 @eel.expose
 def getspecific(tablename, condition):
@@ -26,11 +43,14 @@ def create_database(dbname):
     mycursor.execute(("create database if not exists {}").format(dbname))
     mycursor.execute(("use {}").format(dbname))
     print(("db created {} and now in use").format(dbname))
+    mydb.commit()
 
 @eel.expose
 def create_table(tablename, dataformat):
+    print(("create table if not exists {} ({})").format(tablename, dataformat))
     mycursor.execute(("create table if not exists {} ({})").format(tablename, dataformat))
     print(("table {} created").format(tablename))
+    mydb.commit()
 
 @eel.expose
 def sendstate(stateparam):
