@@ -29,6 +29,7 @@ li {
 	--light-yellow: #FFF2C6;
 	--orange: #FD7238;
 	--light-orange: #FFE0D3;
+	--green: #91ff51;
 }
 
 html {
@@ -480,6 +481,9 @@ body {
 }
 #content main .table-data .order table tr td .status.process {
 	background: var(--yellow);
+}
+#content main .table-data .order table tr td .status.total {
+	background: var(--green);
 }
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);

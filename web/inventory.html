@@ -10,16 +10,16 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="mainstyle.css">
 
-	<title>AdminHub</title>
+	<title>OuOu</title>
 </head>
-<body>
+<body class="dark">
 
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-smile'></i>
-			<span class="text">AdminHub</span>
+			<span class="text">OuOu</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -84,7 +84,7 @@
 					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>
-			<input type="checkbox" id="switch-mode" hidden>
+			<input type="checkbox" id="switch-mode" checked hidden>
 			<label for="switch-mode" class="switch-mode"></label>
 			<a href="#" class="notification">
 				<i class='bx bxs-bell' ></i>
@@ -96,57 +96,57 @@
 		</nav>
 		<!-- NAVBAR -->
 
-		<!-- MAIN -->
-		<main>
-			<div class="head-title">
-				<div class="left">
-					<h1>Dashboard</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Home</a>
-						</li>
-					</ul>
-				</div>
-				<a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a>
-			</div>
-
-			<ul class="box-info">
+<!-- MAIN -->
+<main>
+	<div class="head-title">
+		<div class="left">
+			<h1>Dashboard</h1>
+			<ul class="breadcrumb">
 				<li>
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">
-						<h3>1020</h3>
-						<p>Profits</p>
-					</span>
+					<a href="#">Dashboard</a>
 				</li>
+				<li><i class='bx bx-chevron-right' ></i></li>
 				<li>
-					<i class='bx bxs-group' ></i>
-					<span class="text">
-						<h3>2834</h3>
-						<p>Customers</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-dollar-circle' ></i>
-					<span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
-					</span>
+					<a class="active" href="#">Home</a>
 				</li>
 			</ul>
+		</div>
+		<a href="#" class="btn-download">
+			<i class='bx bxs-cloud-download' ></i>
+			<span class="text">Download PDF</span>
+		</a>
+	</div>
 
+	<div class="table-data">
+		<div class="order">
+			<div class="head">
+				<h3>Recent Orders</h3>
+				<i class='bx bx-plus' onclick="newcard()"></i>
+				<i class='bx bx-trash' onclick="deleteuser()"></i>
+				<i class='bx bx-search' ></i>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Supplier</th>
+						<th>Quantity</th>
+						<th>Cost</th>
+					</tr>
+				</thead>
+				<tbody id="transactionstable">
 
+					
+				</tbody>
+			</table>
+		</div>
 
-		</main>
-		<!-- MAIN -->
+	</div>
+</main>
+<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
+	
 	
 
 	<script src="mainscript.js"></script>
@@ -194,40 +194,153 @@
 	  <script type="text/javascript">
   
 		///////
-		
+		var sqlretunval = "";
+		var currenttransactionsresponse = "";
+
+		function deleteall(){
+			eel.droptable("inventory");
+			console.log("droptable");
+			window.location.reload();
+		}
+
+		function newcard(){
+			//eel.insert_into_table("dashboard", "'Sales', NULL");
+			var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+			var today = new Date();
+
+			let item = prompt("Enter new  item name");
+			let iconurl = prompt("Enter card icon url");
+			var supplier = prompt("Enter supplier");
+			let quantity = parseInt(prompt("enter quantity"));
+			let cost = parseInt(prompt("enter cost"));
+			if (item != "" && item != null && supplier != "" && supplier != null && quantity != "" && quantity != null && cost != "" && cost != null && typeof(quantity) == "number" && typeof (cost) == "number") {
+				if(iconurl != null || iconurl != "") {
+					
+					randomseed = Math.floor(Math.random() * 100001);
+					iconurl = "https://avatars.dicebear.com/api/adventurer/"+ randomseed +".svg";		
+					//eel.insert_into_table("users", '"' + username + '", "' + iconurl + '", "' + date + '", "' + password + '", ' + accesslevel);
+					//window.location.reload();
+				}
+				
+				eel.insert_into_table("inventory", '"' + item + '", "' + iconurl + '", "' + supplier + '", ' + quantity + ', ' + cost);
+				window.location.reload();
+				
+			}
+		}
+
+		function changequantity(item) {
+			let quantity = prompt("Enter new quantity");
+			if (quantity == "NA" || quantity == "delete"){
+				eel.delete_specific("inventory", "item = " + '"' + item +  '"');
+				window.location.reload();
+			}
+			else {
+				eel.update_quantity("inventory", '"' + quantity + '"', "item = " + '"' + item +  '"');
+				window.location.reload();
+			}
+		}
+
+		function changecost(item) {
+			let cost = parseInt(prompt("Enter new cost"));
+			console.log(cost);
+			if (cost == "NA" && cost == "delete"){
+				eel.delete_specific("inventory", "item = " + '"' + item +  '"');
+				window.location.reload();
+			}
+			else {
+				eel.update_cost("inventory", cost, "item = " + '"' + item +  '"');
+				window.location.reload();
+			}
+		}
+
+		function updatecard (cardname, value){
+			console.log(cardname);
+            console.log(value);
+			eel.update_specific("inventory", value, "field = " + '"' + cardname +  '"');
+			window.location.reload();
+		}
+
+		function deleteuser(){
+			let item = prompt("Enter item to delete");
+			eel.delete_specific("inventory", 'item = "' + item + '"');
+			window.location.reload();
+		}
+
+		function capitalizeFirstLetter(string) {
+ 			return string.charAt(0).toUpperCase() + string.slice(1);
+		}
+
+		eel.create_table("inventory", "item varchar(50) PRIMARY KEY NOT NULL, Imageurl varchar(512), supplier varchar(20) NOT NULL, quantity int(40) NOT NULL, cost int(10) NOT NULL");
 		//SQL CONNECTIVITY
-		//eel.getall("test");
-		
-		var sqlretunval = '';
-		var currenttransactionsresponse = '';
-		var currenttrasnactionspara = document.getElementById("currenttransactionstext");
-		var currenttrasnactionsdiv = document.getElementById("currenttrasnactionsdiv");
-		
-		var clonelist = [];
-		//var clone = currenttrasnactionsdiv.cloneNode(true);
-		
+		eel.getall("inventory");
+
 		eel.expose(sqlreturn);
 		  function sqlreturn(data) {
-			//console.log(data);
-		
+
 			window.sqlretunval = data;
+
+			
 			window.currenttransactionsresponse = sqlretunval;
 			console.log(sqlretunval);
-			for (var i = sqlretunval.length - 1; i >= 0; i--) {
-			
-		
-			  var cln = currenttrasnactionspara.cloneNode(true);
-			  console.log(sqlretunval[i]);
-			  cln.innerHTML += "<p>" + sqlretunval[i] + "</p>";
-			  clonelist.push(document.getElementById("currenttrasnactionsdiv").appendChild(cln));
-			  
-			  
-		
+			if (sqlretunval == "" || sqlretunval == null) {
+				//eel.insert_into_table("dashboard", '"Sales", NULL');
+				//eel.insert_into_table("dashboard", '"Profits", NULL');
+				//eel.insert_into_table("dashboard", '"Purchases", NULL');
+				console.log("null");
+				//window.location.reload();
 			}
+			//document.getElementById("sqlbutton").click();
+			let dictionary = Object.assign({}, ...sqlretunval.map((x) => ({[x[0]]: x[1]})));
+			var copy={};
+			console.log(dictionary);
+			console.log(sqlretunval);		
+			Object.assign(copy, dictionary);
+			//delete copy["Sales"];
+			//delete copy["Purchases"];
+			//delete copy["Profits"];
+			var extracards = Object.keys(copy).length;
+			var extracardskey = Object.keys(copy);
+
+			if (extracards != 0) {
+				console.log("more fields", extracardskey, extracards);
+				var totalcost = 0;
+				var totalquantity = 0;
+				for (var i = 0; i < extracards; i++) {
+					//console.log("h");
+					
+					var item = String(sqlretunval[i][0]);
+                    var imageurl = String(sqlretunval[i][1]);
+					var supplier = String(sqlretunval[i][2]);
+					var quantity = String(sqlretunval[i][3]);
+					var price = String(sqlretunval[i][4]);
+					console.log(price* quantity, supplier);
+					totalcost = totalcost + (price * quantity);
+					totalquantity = totalquantity + quantity;
+					var extracardname = extracardskey[i];
+					var extracardvalue = copy[extracardname];
+					//console.log(extracardname, extracardvalue);
+					if (imageurl == 'null' || imageurl.length == 0){
+						imageurl = "https://avatars.githubusercontent.com/u/31175254?s=400&u=8d7060f8732fc82ed92950a00b5d4b498d93d6e1&v=4";
+					}
+					//console.log(i, id, customer, imageurl, date, status, price);
+					//console.log('<tr><td><img src="'+ imageurl + '"><p>' + customer + '</p></td><td>' + date + '</td><td><span class="status ' + status + '" onclick="changestatus(' + id + ')">' + status + '</span></td><td>' + price + '</td></tr>') ;
+					document.getElementById('transactionstable').innerHTML += '<tr><td><img src="'+ imageurl + '"><p>' + item + '</p></td><td>' + supplier + '</td><td><span class="status completed" onclick="changequantity(' + "'" + item + "'" +')">' + quantity + '</span></td><td>' + '<span class="status process" onclick="changecost(' + "'" + item + "'" +')">' + "₹" + price + '</span>' + '</td></tr>' ;
+
+				}
+
+				document.getElementById('transactionstable').innerHTML += '<tr><td colspan="2"><i class="bx bxs-dollar-circle" ></i><p>' + "total" + '</p></td><td>' + "" + '</td><td><span class="status total" >' + totalquantity + '</span></td><td>' + '<span class="status total" >' + "₹" + totalcost + '</span>' + '</td></tr>' ;
+
+			}
+			//document.getElementById('cardlist').innerHTML += '<li onclick="newcard()"><i class="bx bxs-plus-circle" ></i><span class="text"><h3 id="h">New</h3><p></p></span></li>' ;
+			//document.getElementById("sales").innerHTML = dictionary["Sales"];
+			//document.getElementById("purchases").innerHTML = dictionary["Purchases"];
+			//document.getElementById("profits").innerHTML = dictionary["Profits"];
+			
 		  }
-		
-		
-		
+		  
+
+		//update tablename set column = newval where name = 
 		</script>
 </body>
 </html>

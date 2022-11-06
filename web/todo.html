@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,6 +97,7 @@
 		</nav>
 		<!-- NAVBAR -->
 
+
 <!-- MAIN -->
 <main>
 	<div class="head-title">
@@ -125,37 +127,20 @@
 		<div class="todo">
 			<div class="head">
 				<h3>Todos</h3>
-				<i class='bx bx-plus' ></i>
+				<i class='bx bx-plus' onclick="newcard()"></i>
+				<i class='bx bx-trash' onclick="deletemulspec()"></i>
 				<i class='bx bx-filter' ></i>
 			</div>
-			<ul class="todo-list">
-				<li class="completed">
-					<p>Todo List</p>
-					<i class='bx bx-dots-vertical-rounded' ></i>
-				</li>
-				<li class="completed">
-					<p>Todo List</p>
-					<i class='bx bx-dots-vertical-rounded' ></i>
-				</li>
-				<li class="not-completed">
-					<p>Todo List</p>
-					<i class='bx bx-dots-vertical-rounded' ></i>
-				</li>
-				<li class="completed">
-					<p>Todo List</p>
-					<i class='bx bx-dots-vertical-rounded' ></i>
-				</li>
-				<li class="not-completed">
-					<p>Todo List</p>
-					<i class='bx bx-dots-vertical-rounded' ></i>
-				</li>
+			<ul class="todo-list" id="todotable">
+
 			</ul>
 		</div>
 	</div>
 </main>
 <!-- MAIN -->
-	</section>
-	<!-- CONTENT -->
+</section>
+<!-- CONTENT -->
+	
 	
 	
 
@@ -206,19 +191,56 @@
 		///////
 		var sqlretunval = "";
 		var currenttransactionsresponse = "";
+		var once = false;
 
+		function deletemulspec(){
+			eel.delete_specific("todo", 'Status != "not-completed"');
+			window.location.reload();
+		}
+
+		function deleteall(){
+			eel.droptable("transactions");
+			console.log("droptable");
+			window.location.reload();
+		}
 
 		function newcard(){
 			//eel.insert_into_table("dashboard", "'Sales', NULL");
-			let cardname = prompt("Enter new card name");
-			let iconurl = prompt("Enter card icon url");
-			let value = parseInt(prompt("Enter value"));
-			if (cardname != "" || cardname != null ||value != "" || value != null || typeof (value) == "number") {
-			
-				eel.insert_into_table("dashboard", '"' + cardname + '", ' + value);
+			var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+			var today = new Date();
+			let note = prompt("Enter new customer name");
+			var date = prompt("Please enter date.", today.getDate()+"-"+monthNames[today.getMonth()]+"-"+today.getFullYear());
+			let status = prompt("Enter transaction status");
+
+			if (note != "" && note != null && date != "" && date != null && status != "" && status != null) {
+				
+				eel.insert_into_table_autoinc("todo", "Note, Date, Status" , '"' + note + '", "' + date + '", "' + status + '"');
 				window.location.reload();
 				
+
 			}
+		}
+		function changestatus(id, status){
+			if (id.length != 0) {
+				
+				
+                //
+				
+				if (status == "completed"){
+					eel.update_status_todo("todo", '"not-completed"', 'ID = ' + id);
+				}
+
+				else if (status == "not-completed"){
+					eel.update_status_todo("todo", '"completed"', 'ID = ' + id);
+				}
+				
+				else if (status != "not-completed" && status != "completed"){
+					eel.update_status_todo("todo", '"completed"', 'ID = ' + id);
+				}
+				window.location.reload();
+				
+            }
 		}
 
 		function updatecard (cardname, value){
@@ -228,23 +250,28 @@
 			window.location.reload();
 		}
 
+		function capitalizeFirstLetter(string) {
+ 			return string.charAt(0).toUpperCase() + string.slice(1);
+		}
 
-		eel.create_table("dashboard", "field varchar(40) PRIMARY KEY, value int(10)")
+		eel.create_table("todo", "ID int AUTO_INCREMENT PRIMARY KEY, Note varchar(500), Date varchar(20), Status varchar(40)");
 		//SQL CONNECTIVITY
-		eel.getall("dashboard");
+		eel.getall("todo");
 
 		eel.expose(sqlreturn);
 		  function sqlreturn(data) {
 
 			window.sqlretunval = data;
+
+			
 			window.currenttransactionsresponse = sqlretunval;
 			console.log(sqlretunval);
 			if (sqlretunval == "" || sqlretunval == null) {
-				eel.insert_into_table("dashboard", '"Sales", NULL');
-				eel.insert_into_table("dashboard", '"Profits", NULL');
-				eel.insert_into_table("dashboard", '"Purchases", NULL');
+				//eel.insert_into_table("dashboard", '"Sales", NULL');
+				//eel.insert_into_table("dashboard", '"Profits", NULL');
+				//eel.insert_into_table("dashboard", '"Purchases", NULL');
 				console.log("null");
-				window.location.reload();
+				//window.location.reload();
 			}
 			//document.getElementById("sqlbutton").click();
 			let dictionary = Object.assign({}, ...sqlretunval.map((x) => ({[x[0]]: x[1]})));
@@ -252,28 +279,37 @@
 			console.log(dictionary);
 			console.log(sqlretunval);		
 			Object.assign(copy, dictionary);
-			delete copy["Sales"];
-			delete copy["Purchases"];
-			delete copy["Profits"];
+			//delete copy["Sales"];
+			//delete copy["Purchases"];
+			//delete copy["Profits"];
 			var extracards = Object.keys(copy).length;
 			var extracardskey = Object.keys(copy);
+
 			if (extracards != 0) {
 				console.log("more fields", extracardskey, extracards);
 				for (var i = 0; i < extracards; i++) {
-					console.log("h");
-                    console.log(i);
+					//console.log("h");
+					var id = String(sqlretunval[i][0]);
+					var note = String(sqlretunval[i][1]);
+					var date = String(sqlretunval[i][2]);
+					var status = String(sqlretunval[i][3]);
+
+					
 					var extracardname = extracardskey[i];
 					var extracardvalue = copy[extracardname];
-					console.log(extracardname, extracardvalue);
-					document.getElementById('cardlist').innerHTML += '<li onclick="updatecard(' + "'" + extracardname + "', prompt('Enter new value'))" + '"' + "><i class='bx bxs-dollar-circle' ></i><span class='text'><h3 id=" + '"' + extracardname + '"' +'>' + extracardvalue + '</h3><p>' + extracardname + '</p></span></li>' ;
+					//console.log(extracardname, extracardvalue);
+
+					console.log(i, id, note, date, status);
+					//console.log('<li class="completed"><p>Todo List</p><i class="bx bx-dots-vertical-rounded" ></i></li>') ;
+					document.getElementById('todotable').innerHTML += '<li onclick="changestatus(' + id + ', ' + "'" + status + "'" + ')" class="'+ status + '"><p>' + note + '</p><i class="bx bx-dots-vertical-rounded" ></i></li>' ;
 
 				}
 
 			}
-			document.getElementById('cardlist').innerHTML += '<li onclick="newcard()"><i class="bx bxs-plus-circle" ></i><span class="text"><h3 id="h">New</h3><p></p></span></li>' ;
-			document.getElementById("sales").innerHTML = dictionary["Sales"];
-			document.getElementById("purchases").innerHTML = dictionary["Purchases"];
-			document.getElementById("profits").innerHTML = dictionary["Profits"];
+			//document.getElementById('cardlist').innerHTML += '<li onclick="newcard()"><i class="bx bxs-plus-circle" ></i><span class="text"><h3 id="h">New</h3><p></p></span></li>' ;
+			//document.getElementById("sales").innerHTML = dictionary["Sales"];
+			//document.getElementById("purchases").innerHTML = dictionary["Purchases"];
+			//document.getElementById("profits").innerHTML = dictionary["Profits"];
 			
 		  }
 		  
@@ -282,3 +318,12 @@
 		</script>
 </body>
 </html>
+
+
+
+
+
+
+
+	
+

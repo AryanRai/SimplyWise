@@ -215,14 +215,17 @@
 			let status = prompt("Enter transaction status");
 			let price = parseInt(prompt("Enter price for transaction"));
 			if (customername != "" && customername != null && date != "" && date != null && status != "" && status != null && price != "" && price != null &&  typeof (price) == "number") {
-				if(iconurl != null && iconurl != "") {
-					eel.insert_into_table_autoinc("transactions", "Customer, Imageurl, Date, Status, Price" , '"' + customername + '", "' + iconurl + '", "' + date + '", "' + status + '", ' + price);
-					window.location.reload();
+				if(iconurl != null || iconurl != "") {
+					
+					randomseed = Math.floor(Math.random() * 100001);
+					iconurl = "https://avatars.dicebear.com/api/adventurer/"+ randomseed +".svg";		
+					//eel.insert_into_table("users", '"' + username + '", "' + iconurl + '", "' + date + '", "' + password + '", ' + accesslevel);
+					//window.location.reload();
 				}
-				else {
-					eel.insert_into_table_autoinc("transactions", "Customer, Imageurl, Date, Status, Price" , '"' + customername + '", ' + 'NULL' + ', "' + date + '", "' + status + '", ' + price);
-					window.location.reload();
-				}
+				
+				eel.insert_into_table_autoinc("transactions", "Customer, Imageurl, Date, Status, Price" , '"' + customername + '", "' + iconurl + '", "' + date + '", "' + status + '", ' + price);
+				window.location.reload();		
+
 			}
 		}
 
@@ -287,7 +290,7 @@
 					}
 					console.log(i, id, customer, imageurl, date, status, price);
 					console.log('<tr><td><img src="'+ imageurl + '"><p>' + customer + '</p></td><td>' + date + '</td><td><span class="status ' + status + '" onclick="changestatus(' + id + ')">' + status + '</span></td><td>' + price + '</td></tr>') ;
-					document.getElementById('transactionstable').innerHTML += '<tr><td><img src="'+ imageurl + '"><p>' + customer + '</p></td><td>' + date + '</td><td><span class="status ' + status + '" onclick="changestatus(' + id + ')">' + status + '</span></td><td>' + price + '</td></tr>' ;
+					document.getElementById('transactionstable').innerHTML += '<tr><td><img src="'+ imageurl + '"><p>' + customer + '</p></td><td>' + date + '</td><td><span class="status ' + status + '" onclick="changestatus(' + id + ')">' + status + '</span></td><td>' + "₹ " + price + '</td></tr>' ;
 
 				}
 

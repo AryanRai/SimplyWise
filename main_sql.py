@@ -6,10 +6,41 @@ eel.init('web')
 state = ""
 
 @eel.expose
+def update_password(tablename, value, condition):
+    print(("update {} set password = {} where {}").format(tablename, value, condition))
+    mycursor.execute(("update {} set password = {} where {}").format(tablename, value, condition))
+    mydb.commit()
+
+@eel.expose
+def update_accesslevel(tablename, value, condition):
+    print(("update {} set accesslevel = {} where {}").format(tablename, value, condition))
+    mycursor.execute(("update {} set accesslevel = {} where {}").format(tablename, value, condition))
+    mydb.commit()
+
+@eel.expose
+def update_cost(tablename, value, condition):
+    print(("update {} set cost = {} where {}").format(tablename, value, condition))
+    mycursor.execute(("update {} set cost = {} where {}").format(tablename, value, condition))
+    mydb.commit()
+    
+@eel.expose
+def update_quantity(tablename, value, condition):
+    print(("update {} set quantity = {} where {}").format(tablename, value, condition))
+    mycursor.execute(("update {} set quantity = {} where {}").format(tablename, value, condition))
+    mydb.commit()
+
+@eel.expose
 def update_specific(tablename, value, condition):
     print(("update {} set value = {} where {}").format(tablename, value, condition))
     mycursor.execute(("update {} set value = {} where {}").format(tablename, value, condition))
     mydb.commit()
+
+@eel.expose
+def update_status_todo(tablename, value, condition):
+    print(("update {} set Status = {} where {}").format(tablename, value, condition))
+    mycursor.execute(("update {} set Status = {} where {}").format(tablename, value, condition))
+    mydb.commit()
+
 
 @eel.expose
 def droptable(tablename):
@@ -74,11 +105,11 @@ def sendstate(stateparam):
 def statechangereact(stateparam):
     if (stateparam == "loginpage"):
         create_database("CsProj")
-        create_table("users", "username VARCHAR(50) PRIMARY KEY NOT NULL, password VARCHAR(50) NOT NULL, accesslevel INT(1), fname VARCHAR(50), lname VARCHAR(50), DOB date, phonenumber INT(10), email VARCHAR(100)")
+        create_table("users", "username varchar(50) PRIMARY KEY NOT NULL, Imageurl varchar(512), Date varchar(20) NOT NULL, password varchar(40) NOT NULL, accesslevel int(4) NOT NULL")
         
     if (stateparam == "loginpage"):
         create_database("CsProj")
-        create_table("users", "username VARCHAR(50) PRIMARY KEY NOT NULL, password VARCHAR(50) NOT NULL, accesslevel INT(1), fname VARCHAR(50), lname VARCHAR(50), DOB date, phonenumber INT(10), email VARCHAR(100)")
+        create_table("users", "username varchar(50) PRIMARY KEY NOT NULL, Imageurl varchar(512), Date varchar(20) NOT NULL, password varchar(40) NOT NULL, accesslevel int(4) NOT NULL")
  
     
 
@@ -94,8 +125,19 @@ def checklogin(usernameparam, passwordparam):
         eel.switchpage("mainpage")
 
     else:
-        #not admin
-        eel.switchpage("loginfailed")
+        mycursor.execute('select password from users where username = "{}"'.format(username))
+        returnlist = []
+        for row in mycursor:
+            print(row)
+            returnlist.append(row)
+            print(returnlist[0][0])
+        if (str(returnlist[0][0]) == str(password)):
+            eel.switchpage("mainpage")
+            print("success")
+            #admin
+        else:
+            #not admin
+            eel.switchpage("loginfailed")
 
 
 eel.start('login.html', port=8080)
