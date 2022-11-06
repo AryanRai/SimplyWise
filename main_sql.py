@@ -11,6 +11,11 @@ def update_specific(tablename, value, condition):
     mycursor.execute(("update {} set value = {} where {}").format(tablename, value, condition))
     mydb.commit()
 
+@eel.expose
+def droptable(tablename):
+    print(("drop table {}").format(tablename))
+    mycursor.execute(("drop table {}").format(tablename))
+    mydb.commit()
 
 @eel.expose
 def delete_specific(tablename, condition):
@@ -22,6 +27,12 @@ def delete_specific(tablename, condition):
 def insert_into_table(tablename, values):
     print(("insert into {} values({})").format(tablename, values))
     mycursor.execute(("insert into {} values({})").format(tablename, values))
+    mydb.commit()
+
+@eel.expose
+def insert_into_table_autoinc(tablename, fields ,values):
+    print(("insert into {} ({}) values({})").format(tablename, fields, values))
+    mycursor.execute(("insert into {} ({}) values({})").format(tablename, fields, values))
     mydb.commit()
 
 @eel.expose

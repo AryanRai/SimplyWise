@@ -121,7 +121,8 @@
 		<div class="order">
 			<div class="head">
 				<h3>Recent Orders</h3>
-				<i class='bx bx-plus' ></i>
+				<i class='bx bx-plus' onclick="newcard()"></i>
+				<i class='bx bx-trash' onclick="deleteall()"></i>
 				<i class='bx bx-search' ></i>
 			</div>
 			<table>
@@ -134,51 +135,8 @@
 					</tr>
 				</thead>
 				<tbody id="transactionstable">
-					<tr>
-						<td>
-							<img src="img/people.png">
-							<p>John Doe</p>
-						</td>
-						<td>01-10-2021</td>
-						<td><span class="status completed" onclick="changestatus(ID)">Completed</span></td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>
-							<img src="img/people.png">
-							<p>John Doe</p>
-						</td>
-						<td>01-10-2021</td>
-						<td><span class="status pending">Pending</span></td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>
-							<img src="img/people.png">
-							<p>John Doe</p>
-						</td>
-						<td>01-10-2021</td>
-						<td><span class="status process">Process</span></td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>
-							<img src="img/people.png">
-							<p>John Doe</p>
-						</td>
-						<td>01-10-2021</td>
-						<td><span class="status pending">Pending</span></td>
-						<td>12</td>
-					</tr>
-					<tr>
-						<td>
-							<img src="img/people.png">
-							<p>John Doe</p>
-						</td>
-						<td>01-10-2021</td>
-						<td><span class="status completed">Completed</span></td>
-						<td>12</td>
-					</tr>
+
+					
 				</tbody>
 			</table>
 		</div>
@@ -239,17 +197,32 @@
 		var sqlretunval = "";
 		var currenttransactionsresponse = "";
 
+		function deleteall(){
+			eel.droptable("transactions");
+			console.log("droptable");
+			window.location.reload();
+		}
 
 		function newcard(){
 			//eel.insert_into_table("dashboard", "'Sales', NULL");
-			let cardname = prompt("Enter new card name");
+			var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+			var today = new Date();
+
+			let customername = prompt("Enter new customer name");
 			let iconurl = prompt("Enter card icon url");
-			let value = parseInt(prompt("Enter value"));
-			if (cardname != "" || cardname != null ||value != "" || value != null || typeof (value) == "number") {
-			
-				eel.insert_into_table("dashboard", '"' + cardname + '", ' + value);
-				window.location.reload();
-				
+			var date = prompt("Please enter date.", today.getDate()+"-"+monthNames[today.getMonth()]+"-"+today.getFullYear());
+			let status = prompt("Enter transaction status");
+			let price = parseInt(prompt("Enter price for transaction"));
+			if (customername != "" && customername != null && date != "" && date != null && status != "" && status != null && price != "" && price != null &&  typeof (price) == "number") {
+				if(iconurl != null && iconurl != "") {
+					eel.insert_into_table_autoinc("transactions", "Customer, Imageurl, Date, Status, Price" , '"' + customername + '", "' + iconurl + '", "' + date + '", "' + status + '", ' + price);
+					window.location.reload();
+				}
+				else {
+					eel.insert_into_table_autoinc("transactions", "Customer, Imageurl, Date, Status, Price" , '"' + customername + '", ' + 'NULL' + ', "' + date + '", "' + status + '", ' + price);
+					window.location.reload();
+				}
 			}
 		}
 
@@ -260,8 +233,11 @@
 			window.location.reload();
 		}
 
+		function capitalizeFirstLetter(string) {
+ 			return string.charAt(0).toUpperCase() + string.slice(1);
+		}
 
-		eel.create_table("transactions", "ID int(8) NOT NULL IDENTITY PRIMARY KEY, Customer varchar(40), Date date, Status varchar(40), Price int(40)");
+		eel.create_table("transactions", "ID int AUTO_INCREMENT PRIMARY KEY, Customer varchar(40), Imageurl varchar(512), Date varchar(20), Status varchar(40), Price int(40)");
 		//SQL CONNECTIVITY
 		eel.getall("transactions");
 
@@ -269,6 +245,8 @@
 		  function sqlreturn(data) {
 
 			window.sqlretunval = data;
+
+			
 			window.currenttransactionsresponse = sqlretunval;
 			console.log(sqlretunval);
 			if (sqlretunval == "" || sqlretunval == null) {
@@ -276,7 +254,7 @@
 				//eel.insert_into_table("dashboard", '"Profits", NULL');
 				//eel.insert_into_table("dashboard", '"Purchases", NULL');
 				console.log("null");
-				window.location.reload();
+				//window.location.reload();
 			}
 			//document.getElementById("sqlbutton").click();
 			let dictionary = Object.assign({}, ...sqlretunval.map((x) => ({[x[0]]: x[1]})));
@@ -289,23 +267,35 @@
 			//delete copy["Profits"];
 			var extracards = Object.keys(copy).length;
 			var extracardskey = Object.keys(copy);
+
 			if (extracards != 0) {
 				console.log("more fields", extracardskey, extracards);
 				for (var i = 0; i < extracards; i++) {
-					console.log("h");
-                    console.log(i);
+					//console.log("h");
+					var id = String(sqlretunval[i][0]);
+					var customer = String(sqlretunval[i][1]);
+                    var imageurl = String(sqlretunval[i][2]);
+					var date = String(sqlretunval[i][3]);
+					var status = String(sqlretunval[i][4]);
+					var price = String(sqlretunval[i][5]);
+					
 					var extracardname = extracardskey[i];
 					var extracardvalue = copy[extracardname];
-					console.log(extracardname, extracardvalue);
-					document.getElementById('transactionstable').innerHTML += '<tr><td><img src="img/people.png"><p>John Doe</p></td><td>01-10-2021</td><td><span class="status completed" onclick="changestatus(ID)">Completed</span></td><td>12</td></tr>' ;
+					//console.log(extracardname, extracardvalue);
+					if (imageurl == 'null' || imageurl.length == 0){
+						imageurl = "https://avatars.githubusercontent.com/u/31175254?s=400&u=8d7060f8732fc82ed92950a00b5d4b498d93d6e1&v=4";
+					}
+					console.log(i, id, customer, imageurl, date, status, price);
+					console.log('<tr><td><img src="'+ imageurl + '"><p>' + customer + '</p></td><td>' + date + '</td><td><span class="status ' + status + '" onclick="changestatus(' + id + ')">' + status + '</span></td><td>' + price + '</td></tr>') ;
+					document.getElementById('transactionstable').innerHTML += '<tr><td><img src="'+ imageurl + '"><p>' + customer + '</p></td><td>' + date + '</td><td><span class="status ' + status + '" onclick="changestatus(' + id + ')">' + status + '</span></td><td>' + price + '</td></tr>' ;
 
 				}
 
 			}
-			document.getElementById('cardlist').innerHTML += '<li onclick="newcard()"><i class="bx bxs-plus-circle" ></i><span class="text"><h3 id="h">New</h3><p></p></span></li>' ;
-			document.getElementById("sales").innerHTML = dictionary["Sales"];
-			document.getElementById("purchases").innerHTML = dictionary["Purchases"];
-			document.getElementById("profits").innerHTML = dictionary["Profits"];
+			//document.getElementById('cardlist').innerHTML += '<li onclick="newcard()"><i class="bx bxs-plus-circle" ></i><span class="text"><h3 id="h">New</h3><p></p></span></li>' ;
+			//document.getElementById("sales").innerHTML = dictionary["Sales"];
+			//document.getElementById("purchases").innerHTML = dictionary["Purchases"];
+			//document.getElementById("profits").innerHTML = dictionary["Profits"];
 			
 		  }
 		  
