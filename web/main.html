@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Boxicons -->
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
 	<link rel="stylesheet" href="mainstyle.css">
 
@@ -86,13 +87,11 @@
 			</form>
 			<input type="checkbox" id="switch-mode" checked hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
+			<a href="#" class="notification" onclick="openintro('main')">
+				<i class='bx bx-info-circle'></i>
+				
 			</a>
-			<a href="#" class="profile">
-				<img src="img/people.png">
-			</a>
+
 		</nav>
 		<!-- NAVBAR -->
 
@@ -198,6 +197,9 @@
 		var sqlretunval = "";
 		var currenttransactionsresponse = "";
 
+		function openintro(pg){
+			window.open("./others/intro.html","Ratting","width=800,height=500,left=150,top=200,toolbar=0,status=0,");
+		}
 
 		function newcard(){
 			//eel.insert_into_table("dashboard", "'Sales', NULL");

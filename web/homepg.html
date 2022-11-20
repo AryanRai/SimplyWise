@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script type="text/javascript" src="/eel.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="mainstyleframe.css">
+
+	<title>AdminHub</title>
+</head>
+<body>
+
+	<!-- CONTENT -->
+	<section id="content">
+		
+		<!-- MAIN -->
+		
+<main>
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="#">Home</a>
+                </li>
+            </ul>
+        </div>
+        <a href="#" class="btn-download">
+            <i class='bx bxs-cloud-download' ></i>
+            <span class="text">Download PDF</span>
+        </a>
+    </div>
+
+    <ul class="box-info">
+        <li>
+            <i class='bx bxs-calendar-check' ></i>
+            <span class="text">
+                <h3>1020</h3>
+                <p>New Order</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxs-group' ></i>
+            <span class="text">
+                <h3>2834</h3>
+                <p>Visitors</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxs-dollar-circle' ></i>
+            <span class="text">
+                <h3>$2543</h3>
+                <p>Total Sales</p>
+            </span>
+        </li>
+    </ul>
+
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Recent Orders</h3>
+                <i class='bx bx-search' ></i>
+                <i class='bx bx-filter' ></i>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Date Order</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="img/people.png">
+                            <p>John Doe</p>
+                        </td>
+                        <td>01-10-2021</td>
+                        <td><span class="status completed">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="img/people.png">
+                            <p>John Doe</p>
+                        </td>
+                        <td>01-10-2021</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="img/people.png">
+                            <p>John Doe</p>
+                        </td>
+                        <td>01-10-2021</td>
+                        <td><span class="status process">Process</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="img/people.png">
+                            <p>John Doe</p>
+                        </td>
+                        <td>01-10-2021</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="img/people.png">
+                            <p>John Doe</p>
+                        </td>
+                        <td>01-10-2021</td>
+                        <td><span class="status completed">Completed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="todo">
+            <div class="head">
+                <h3>Todos</h3>
+                <i class='bx bx-plus' ></i>
+                <i class='bx bx-filter' ></i>
+            </div>
+            <ul class="todo-list">
+                <li class="completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded' ></i>
+                </li>
+                <li class="completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded' ></i>
+                </li>
+                <li class="not-completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded' ></i>
+                </li>
+                <li class="completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded' ></i>
+                </li>
+                <li class="not-completed">
+                    <p>Todo List</p>
+                    <i class='bx bx-dots-vertical-rounded' ></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="mainscript.js"></script>
+	<script type="text/javascript">
+  
+		console.log("Calling Python...");
+		eel.sendstate("mainpage"); // This calls the Python function that was decorated 
+		
+		///// button functions
+	  
+		function handlebutton(button_identify){
+		  eel.sendstate(button_identify);
+		}
+	  
+		//////
+	  
+		////// page change functions
+	  
+		eel.expose(switchpage);
+		function switchpage(page) {
+		  console.log(page);
+		  console.log("switching to " + page);
+		  if (page == "transactions") {
+			  window.location.replace("./transactions.html");
+		  }
+		  if (page == "history") {
+			  window.location.replace("./history.html");
+		  }
+		  if (page == "inventory") {
+			  window.location.replace("./inventory.html");
+		  }
+		  if (page == "borrows") {
+			  window.location.replace("./borrows.html");
+		  }
+		  if (page == "profit") {
+			  window.location.replace("./profit.html");
+		  }
+		  if (page == "tasks") {
+			  window.location.replace("./tasks.html");
+		  }
+		  if (page == "settings") {
+			  window.location.replace("./settings.html");
+		  }
+		}
+	  
+	  </script>
+	  <script type="text/javascript">
+  
+		///////
+		
+		//SQL CONNECTIVITY
+		eel.getall("test");
+		
+		var sqlretunval = '';
+		var currenttransactionsresponse = '';
+		var currenttrasnactionspara = document.getElementById("currenttransactionstext");
+		var currenttrasnactionsdiv = document.getElementById("currenttrasnactionsdiv");
+		
+		var clonelist = [];
+		//var clone = currenttrasnactionsdiv.cloneNode(true);
+		
+		eel.expose(sqlreturn);
+		  function sqlreturn(data) {
+			//console.log(data);
+		
+			window.sqlretunval = data;
+			window.currenttransactionsresponse = sqlretunval;
+			console.log(sqlretunval);
+			for (var i = sqlretunval.length - 1; i >= 0; i--) {
+			
+		
+			  var cln = currenttrasnactionspara.cloneNode(true);
+			  console.log(sqlretunval[i]);
+			  cln.innerHTML += "<p>" + sqlretunval[i] + "</p>";
+			  clonelist.push(document.getElementById("currenttrasnactionsdiv").appendChild(cln));
+			  
+			  
+		
+			}
+		  }
+		
+		
+		
+		</script>
+</body>
+</html>
