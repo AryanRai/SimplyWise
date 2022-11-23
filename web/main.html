@@ -53,6 +53,12 @@
 					<span class="text">Users</span>
 				</a>
 			</li>
+			<li>
+				<a href="#" onclick="handlebutton('bill')">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Billing</span>
+				</a>
+			</li>
 		</ul>
 		<ul class="side-menu">
 			<li>
@@ -230,6 +236,9 @@
 		eel.create_table("dashboard", "field varchar(40) PRIMARY KEY, value int(10)")
 		//SQL CONNECTIVITY
 		eel.getall("dashboard");
+		
+		
+		
 
 		eel.expose(sqlreturn);
 		  function sqlreturn(data) {
@@ -268,12 +277,16 @@
 				}
 
 			}
+
+			
 			document.getElementById('cardlist').innerHTML += '<li onclick="newcard()"><i class="bx bxs-plus-circle" ></i><span class="text"><h3 id="h">New</h3><p></p></span></li>' ;
 			document.getElementById("sales").innerHTML = dictionary["Sales"];
 			document.getElementById("purchases").innerHTML = dictionary["Purchases"];
 			document.getElementById("profits").innerHTML = dictionary["Profits"];
 			
 		  }
+
+		  
 		  
 
 		//update tablename set column = newval where name = 

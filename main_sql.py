@@ -6,6 +6,16 @@ eel.init('web')
 state = ""
 
 @eel.expose
+def getdashboard():
+    mycursor.execute("SELECT SUM(Price) AS 'Total Sales' FROM transactions where status = 'completed'")
+    returnlist = []
+    for row in mycursor:
+        print(row)
+        returnlist.append(row)
+    print(returnlist)
+    eel.sqlreturndashboard(returnlist)
+
+@eel.expose
 def update_password(tablename, value, condition):
     print(("update {} set password = {} where {}").format(tablename, value, condition))
     mycursor.execute(("update {} set password = {} where {}").format(tablename, value, condition))
