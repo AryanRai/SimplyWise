@@ -54,7 +54,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" onclick="handlebutton('bill')">
+				<a href="#" onclick="handlebutton('billing')">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Billing</span>
 				</a>
@@ -193,6 +193,9 @@
 		  if (page == "users") {
 			  window.location.replace("./users.html");
 		  }
+		  if (page == "billing") {
+			  window.location.replace("./billing.html");
+		  }
 
 		}
 	  
@@ -235,6 +238,7 @@
 
 		eel.create_table("dashboard", "field varchar(40) PRIMARY KEY, value int(10)")
 		//SQL CONNECTIVITY
+		eel.getdashboard();
 		eel.getall("dashboard");
 		
 		
@@ -280,9 +284,9 @@
 
 			
 			document.getElementById('cardlist').innerHTML += '<li onclick="newcard()"><i class="bx bxs-plus-circle" ></i><span class="text"><h3 id="h">New</h3><p></p></span></li>' ;
-			document.getElementById("sales").innerHTML = dictionary["Sales"];
-			document.getElementById("purchases").innerHTML = dictionary["Purchases"];
-			document.getElementById("profits").innerHTML = dictionary["Profits"];
+			document.getElementById("sales").innerHTML = "₹ " + dictionary["Sales"];
+			document.getElementById("purchases").innerHTML =  "₹ " + dictionary["Purchases"];
+			document.getElementById("profits").innerHTML = "₹ " + dictionary["Profits"];
 			
 		  }
 

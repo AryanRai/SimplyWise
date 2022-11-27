@@ -12,8 +12,30 @@ def getdashboard():
     for row in mycursor:
         print(row)
         returnlist.append(row)
-    print(returnlist)
-    eel.sqlreturndashboard(returnlist)
+    print(int(returnlist[0][0]))
+    Profits = int(returnlist[0][0])
+    mycursor.execute(("update dashboard set value = {} where field = 'Sales'").format(Profits))
+
+@eel.expose
+def getbill():
+    mycursor.execute("SELECT item AS 'items' FROM billing")
+    returnlist = []
+    for row in mycursor:
+        print(row)
+        returnlist.append(row)
+
+        #itemname = str(row[0])
+        #print(itemname)
+        #mycursor.execute(("SELECT cost AS 'prices' FROM inventory where item = '{}'").fomat(itemname))
+        #price = 0
+        #for row in mycursor:
+        #    price = int(row[0])
+            
+        #mycursor.execute(("update billing set price = {} where item = '{}'").format(price, itemname))
+
+    #print(int(returnlist[0][0]))
+    #itemname = int(returnlist[0][0])
+    #mycursor.execute(("update billing set price = {} where item = '{}'").format(price, itemname))
 
 @eel.expose
 def update_password(tablename, value, condition):

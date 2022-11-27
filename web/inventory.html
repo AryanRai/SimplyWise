@@ -100,10 +100,10 @@
 <main>
 	<div class="head-title">
 		<div class="left">
-			<h1>Dashboard</h1>
+			<h1>Inventory</h1>
 			<ul class="breadcrumb">
 				<li>
-					<a href="#">Dashboard</a>
+					<a href="#">Inventory</a>
 				</li>
 				<li><i class='bx bx-chevron-right' ></i></li>
 				<li>
@@ -120,7 +120,7 @@
 	<div class="table-data">
 		<div class="order">
 			<div class="head">
-				<h3>Recent Orders</h3>
+				<h3>Inventory</h3>
 				<i class='bx bx-plus' onclick="newcard()"></i>
 				<i class='bx bx-trash' onclick="deleteuser()"></i>
 				<i class='bx bx-search' ></i>
@@ -197,6 +197,15 @@
 		var sqlretunval = "";
 		var currenttransactionsresponse = "";
 
+		function deleteitem(item){
+			let YN = prompt("press enter to delete or type N to cancel and press enter");
+			if (YN == "" ||YN == null){
+				eel.delete_specific("inventory", "item = " + '"' + item + '"');
+				window.location.reload();
+			}
+			
+		}
+
 		function deleteall(){
 			eel.droptable("inventory");
 			console.log("droptable");
@@ -215,7 +224,7 @@
 			let quantity = parseInt(prompt("enter quantity"));
 			let cost = parseInt(prompt("enter cost"));
 			if (item != "" && item != null && supplier != "" && supplier != null && quantity != "" && quantity != null && cost != "" && cost != null && typeof(quantity) == "number" && typeof (cost) == "number") {
-				if(iconurl != null || iconurl != "") {
+				if(iconurl == null || iconurl == "") {
 					
 					randomseed = Math.floor(Math.random() * 100001);
 					iconurl = "https://avatars.dicebear.com/api/adventurer/"+ randomseed +".svg";		
@@ -312,11 +321,11 @@
 					var item = String(sqlretunval[i][0]);
                     var imageurl = String(sqlretunval[i][1]);
 					var supplier = String(sqlretunval[i][2]);
-					var quantity = String(sqlretunval[i][3]);
+					var quantity = 1 * sqlretunval[i][3];
 					var price = String(sqlretunval[i][4]);
 					console.log(price* quantity, supplier);
 					totalcost = totalcost + (price * quantity);
-					totalquantity = totalquantity + quantity;
+					totalquantity = 1 * totalquantity + quantity;
 					var extracardname = extracardskey[i];
 					var extracardvalue = copy[extracardname];
 					//console.log(extracardname, extracardvalue);
@@ -325,7 +334,7 @@
 					}
 					//console.log(i, id, customer, imageurl, date, status, price);
 					//console.log('<tr><td><img src="'+ imageurl + '"><p>' + customer + '</p></td><td>' + date + '</td><td><span class="status ' + status + '" onclick="changestatus(' + id + ')">' + status + '</span></td><td>' + price + '</td></tr>') ;
-					document.getElementById('transactionstable').innerHTML += '<tr><td><img src="'+ imageurl + '"><p>' + item + '</p></td><td>' + supplier + '</td><td><span class="status completed" onclick="changequantity(' + "'" + item + "'" +')">' + quantity + '</span></td><td>' + '<span class="status process" onclick="changecost(' + "'" + item + "'" +')">' + "₹" + price + '</span>' + '</td></tr>' ;
+					document.getElementById('transactionstable').innerHTML += '<tr><td onclick="deleteitem(' + "'" + item + "'" + ')"><img src="'+ imageurl + '"><p>' + item + '</p></td><td>' + supplier + '</td><td><span class="status completed" onclick="changequantity(' + "'" + item + "'" +')">' + quantity + '</span></td><td>' + '<span class="status process" onclick="changecost(' + "'" + item + "'" +')">' + "₹" + price + '</span>' + '</td></tr>' ;
 
 				}
 
