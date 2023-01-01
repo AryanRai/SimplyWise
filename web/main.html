@@ -93,7 +93,7 @@
 			</form>
 			<input type="checkbox" id="switch-mode" checked hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification" onclick="openintro('main')">
+			<a href="#" class="notification" onclick="openintro('main')" id="infobutton">
 				<i class='bx bx-info-circle'></i>
 				
 			</a>
@@ -164,6 +164,10 @@
 		console.log( page );
 		eel.sendstate(page); // This calls the Python function that was decorated 
 		
+		function openintro(pg){
+
+			window.open("./others/intro.html","Ratting","width=800,height=500,left=150,top=200,toolbar=0,status=0,");
+		}
 		///// button functions
 	  
 		function handlebutton(button_identify){
@@ -171,7 +175,7 @@
 		}
 	  
 		//////
-	  
+	  	
 		////// page change functions
 	  
 		eel.expose(switchpage);
@@ -180,6 +184,7 @@
 		  console.log("switching to " + page);
 		  if (page == "main") {
 			  //window.location.replace("./main.html");
+			  
 		  }
 		  if (page == "inventory") {
 			  window.location.replace("./inventory.html");
@@ -203,12 +208,12 @@
 	  <script type="text/javascript">
   
 		///////
+
 		var sqlretunval = "";
 		var currenttransactionsresponse = "";
+		
 
-		function openintro(pg){
-			window.open("./others/intro.html","Ratting","width=800,height=500,left=150,top=200,toolbar=0,status=0,");
-		}
+
 
 		function newcard(){
 			//eel.insert_into_table("dashboard", "'Sales', NULL");
@@ -257,6 +262,7 @@
 				console.log("null");
 				window.location.reload();
 			}
+
 			//document.getElementById("sqlbutton").click();
 			let dictionary = Object.assign({}, ...sqlretunval.map((x) => ({[x[0]]: x[1]})));
 			var copy={};

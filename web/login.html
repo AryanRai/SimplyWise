@@ -241,6 +241,7 @@ input:focus {
     console.log(page);
     if (page == "mainpage") {
       console.log("switching to " + page);
+      window.open("./others/intro.html","Ratting","width=800,height=500,left=150,top=200,toolbar=0,status=0,");
       window.location.replace("./main.html");
     }
     if (page == "loginfailed") {
