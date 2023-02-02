@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="icon" type="image/x-icon" href="./Fav.png">
 	<script type="text/javascript" src="/eel.js"></script>
 	<meta charset="UTF-8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Boxicons -->
@@ -11,7 +13,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="mainstyle.css">
 
-	<title>OuOu</title>
+	<title>Main</title>
 </head>
 <body class="dark">
 
@@ -19,8 +21,8 @@
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="#" class="brand">
-			<i class='bx bxs-smile'></i>
-			<span class="text">OuOu</span>
+			
+			<img src="./Simply.svg">
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
@@ -118,7 +120,7 @@
 						</li>
 					</ul>
 				</div>
-				<a href="#" class="btn-download">
+				<a href="#" class="btn-download" id="downloadbutt" onclick="printpdf()">
 					<i class='bx bxs-cloud-download' ></i>
 					<span class="text">Download PDF</span>
 				</a>
@@ -302,6 +304,10 @@
 		  
 
 		//update tablename set column = newval where name = 
+		</script>
+		<script type="text/javascript">
+			var printbutt = document.getElementById("downloadbutt");
+
 		</script>
 </body>
 </html>
