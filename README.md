@@ -1,5 +1,5 @@
 Instructions in PDF
-
+Stock Management Software/Web App using Python, eel and Javascript.
 Sceenshots-
 ![88](https://github.com/AryanRai/ComputerSciProj/assets/31175254/8eedb109-f2d4-4760-adce-41c302d81b59)
 ![90](https://github.com/AryanRai/ComputerSciProj/assets/31175254/b2cb015a-e995-42a2-94b8-62118e07e4a3)
