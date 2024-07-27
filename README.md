@@ -1,3 +1,5 @@
+Stock Management Software/Web App using Python, eel and Javascript.
+
 Instructions in PDF
 Stock Management Software/Web App using Python, eel and Javascript.
 Sceenshots-
