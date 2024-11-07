@@ -1,4 +1,3 @@
-Your documentation looks solid, but I have refined it for clarity and consistency. Here is the updated version:
 
 ---
 
@@ -186,4 +185,3 @@ SimplyWise simplifies shop management, allowing business owners to focus on grow
 
 --- 
 
-This version is a bit cleaner and consistent while maintaining brevity. Let me know if you'd like any additional changes!
