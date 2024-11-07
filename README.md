@@ -1,6 +1,4 @@
 
----
-
 # SimplyWise Shop Management System
 
 **SimplyWise** is an inventory management software/web app that centralizes customer records, transactions, inventory, and billing. It helps business owners efficiently manage operations, monitor sales, and track inventory for small to medium-sized stores.
