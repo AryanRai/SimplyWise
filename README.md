@@ -1,5 +1,29 @@
-# SimplyWise
-Stock Management Software/Web App using Python, eel and Javascript.
+# SimplyWise Shop Management System
+Inventory Management Software/Web App using Python, SQL, eel, HTML and Javascript.
+
+**SimplyWise** is a digital shop management system that centralizes customer records, transactions, inventory, and billing. It is designed to make business operations efficient, organized, and data-driven for small to medium-sized stores.
+
+## Main Features
+
+1. **Customer & Transaction Management**: Record customer details and track transaction history.
+2. **Inventory Control**: Monitor stock levels and receive low-stock alerts.
+3. **Analytics & Reporting**: Visualize sales trends and analyze customer behavior.
+4. **Billing & Invoicing**: Generate invoices and manage payment records.
+5. **Task Management**: Organize daily tasks and set reminders.
+6. **User Access Control**: Define roles and permissions for team members.
+
+## Home Page Sections
+
+1. **Dashboard**: Overview of sales, recent activity, and inventory alerts.
+2. **My Store**: Add and edit products, monitor inventory, and organize categories.
+3. **Analytics**: Track sales trends, product performance, and customer demographics.
+4. **To-Do**: Create, prioritize, and set reminders for tasks.
+5. **Users**: Manage roles and permissions, monitor user activity.
+6. **Billing**: Generate and track invoices, view billing history.
+
+---
+
+SimplyWise simplifies shop management, enabling business owners to focus on growth and customer satisfaction.
 
 Instructions in PDF
 Sceenshots-
